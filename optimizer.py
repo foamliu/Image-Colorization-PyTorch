@@ -1,4 +1,4 @@
-class MICOptimizer(object):
+class ColorizationOptimizer(object):
     """A simple wrapper class for learning rate scheduling"""
 
     def __init__(self, optimizer):

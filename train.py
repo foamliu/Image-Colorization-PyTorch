@@ -3,9 +3,10 @@ import torch
 from torch import nn
 from torch.utils.tensorboard import SummaryWriter
 
-from config import device, num_classes, grad_clip, print_freq, num_workers
-from data_gen import MICDataset
+from config import device, grad_clip, print_freq, num_workers
+from data_gen import ColorizationDataset
 from models import ColorizationModel
+from optimizer import ColorizationOptimizer
 from utils import parse_args, save_checkpoint, AverageMeter, get_logger, accuracy, clip_gradient, get_learning_rate
 
 
@@ -23,7 +24,8 @@ def train_net(args):
         model = ColorizationModel()
         model = nn.DataParallel(model)
 
-        optimizer = torch.optim.Adam(model.parameters(), lr=args.lr, betas=(0.9, 0.99), weight_decay=args.weight_decay)
+        optimizer = ColorizationOptimizer(
+            torch.optim.Adam(model.parameters(), lr=args.lr, betas=(0.9, 0.99), weight_decay=args.weight_decay))
 
     else:
         checkpoint = torch.load(checkpoint)
@@ -38,10 +40,10 @@ def train_net(args):
     model = model.to(device)
 
     # Custom dataloaders
-    train_dataset = MICDataset('train')
+    train_dataset = ColorizationDataset('train')
     train_loader = torch.utils.data.DataLoader(train_dataset, batch_size=args.batch_size, shuffle=True,
                                                num_workers=num_workers)
-    valid_dataset = MICDataset('val')
+    valid_dataset = ColorizationDataset('val')
     valid_loader = torch.utils.data.DataLoader(valid_dataset, batch_size=args.batch_size, shuffle=False,
                                                num_workers=num_workers)
 
@@ -53,8 +55,9 @@ def train_net(args):
                                       optimizer=optimizer,
                                       epoch=epoch,
                                       logger=logger)
-        lr = get_learning_rate(optimizer)
-        print('Current effective learning rate: {}\n'.format(lr))
+
+        print('Learning rate: {}\n'.format(optimizer.lr))
+        print('Step number: {}\n'.format(optimizer.step_num))
 
         writer.add_scalar('model/train_loss', train_loss, epoch)
         writer.add_scalar('model/train_acc', train_acc, epoch)

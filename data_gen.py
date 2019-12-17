@@ -34,7 +34,7 @@ def negative_log_likelihood(y_pred, y_true):
     return loss.mean()
 
 
-class MICDataset(Dataset):
+class ColorizationDataset(Dataset):
     def __init__(self, split):
         self.split = split
 
