@@ -89,7 +89,7 @@ class segnetUp1(nn.Module):
 
 
 class ColorizationModel(nn.Module):
-    def __init__(self, n_classes=num_classes, in_channels=3, is_unpooling=True, pretrain=True):
+    def __init__(self, n_classes=num_classes, in_channels=1, is_unpooling=True, pretrain=True):
         super(ColorizationModel, self).__init__()
 
         self.in_channels = in_channels
@@ -169,4 +169,4 @@ class ColorizationModel(nn.Module):
 if __name__ == '__main__':
     model = ColorizationModel()
 
-    scope(model, (3, im_size, im_size))
+    scope(model, (1, im_size, im_size))
