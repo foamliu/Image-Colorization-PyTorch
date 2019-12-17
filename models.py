@@ -127,7 +127,7 @@ class ColorizationModel(nn.Module):
         up2 = self.up2(up3, indices_2, unpool_shape2)
         up1 = self.up1(up2, indices_1, unpool_shape1)
 
-        x = torch.softmax(up1)  # [N, 313, 256, 256] -> [N, 313, 256, 256]
+        x = torch.softmax(up1, dim=1)  # [N, 313, 256, 256] -> [N, 313, 256, 256]
 
         return x
 
