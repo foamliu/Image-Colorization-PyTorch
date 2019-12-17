@@ -114,7 +114,7 @@ class ColorizationModel(nn.Module):
             self.init_vgg16_params(vgg16)
 
     def forward(self, inputs):
-        # inputs: [N, 4, 320, 320]
+        # inputs: [N, 3, 256, 256]
         down1, indices_1, unpool_shape1 = self.down1(inputs)
         down2, indices_2, unpool_shape2 = self.down2(down1)
         down3, indices_3, unpool_shape3 = self.down3(down2)
