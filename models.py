@@ -104,9 +104,9 @@ class ColorizationModel(nn.Module):
 
         self.up5 = segnetUp1(512, 512)
         self.up4 = segnetUp1(512, 256)
-        self.up3 = segnetUp1(256, 128)
-        self.up2 = segnetUp1(128, 64)
-        self.up1 = segnetUp1(64, n_classes)
+        self.up3 = segnetUp1(256, n_classes)
+        # self.up2 = segnetUp1(128, 64)
+        # self.up1 = segnetUp1(64, n_classes)
 
         if self.pretrain:
             import torchvision.models as models
@@ -124,10 +124,10 @@ class ColorizationModel(nn.Module):
         up5 = self.up5(down5, indices_5, unpool_shape5)
         up4 = self.up4(up5, indices_4, unpool_shape4)
         up3 = self.up3(up4, indices_3, unpool_shape3)
-        up2 = self.up2(up3, indices_2, unpool_shape2)
-        up1 = self.up1(up2, indices_1, unpool_shape1)
+        # up2 = self.up2(up3, indices_2, unpool_shape2)
+        # up1 = self.up1(up2, indices_1, unpool_shape1)
 
-        x = torch.softmax(up1, dim=1)  # [N, 313, 256, 256] -> [N, 313, 256, 256]
+        x = torch.softmax(up3, dim=1)  # [N, 313, 64, 64] -> [N, 313, 64, 64]
 
         return x
 
