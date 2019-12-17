@@ -2,7 +2,7 @@ import torch
 import torch.nn as nn
 from torchscope import scope
 
-from config import device, im_size
+from config import im_size, num_classes
 
 
 class conv2DBatchNormRelu(nn.Module):
@@ -89,7 +89,7 @@ class segnetUp1(nn.Module):
 
 
 class ColorizationModel(nn.Module):
-    def __init__(self, n_classes=1, in_channels=3, is_unpooling=True, pretrain=True):
+    def __init__(self, n_classes=num_classes, in_channels=3, is_unpooling=True, pretrain=True):
         super(ColorizationModel, self).__init__()
 
         self.in_channels = in_channels
@@ -107,8 +107,6 @@ class ColorizationModel(nn.Module):
         self.up3 = segnetUp1(256, 128)
         self.up2 = segnetUp1(128, 64)
         self.up1 = segnetUp1(64, n_classes)
-
-        self.sigmoid = nn.Sigmoid()
 
         if self.pretrain:
             import torchvision.models as models
@@ -129,8 +127,7 @@ class ColorizationModel(nn.Module):
         up2 = self.up2(up3, indices_2, unpool_shape2)
         up1 = self.up1(up2, indices_1, unpool_shape1)
 
-        x = torch.squeeze(up1, dim=1)  # [N, 1, 320, 320] -> [N, 320, 320]
-        x = self.sigmoid(x)
+        x = torch.softmax(up1)  # [N, 313, 256, 256] -> [N, 313, 256, 256]
 
         return x
 
