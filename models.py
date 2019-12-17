@@ -167,6 +167,7 @@ class ColorizationModel(nn.Module):
 
 
 if __name__ == '__main__':
-    model = ColorizationModel()
+    from config import device
+    model = ColorizationModel().to(device)
 
     summary(model, (1, im_size, im_size))
