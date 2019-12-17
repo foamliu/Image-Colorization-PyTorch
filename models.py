@@ -1,6 +1,6 @@
 import torch
 import torch.nn as nn
-from torchscope import scope
+from torchsummary import summary
 
 from config import im_size, num_classes
 
@@ -169,4 +169,4 @@ class ColorizationModel(nn.Module):
 if __name__ == '__main__':
     model = ColorizationModel()
 
-    scope(model, (1, im_size, im_size))
+    summary(model, (1, im_size, im_size))
