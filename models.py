@@ -170,6 +170,6 @@ class ColorizationModel(nn.Module):
 
 
 if __name__ == '__main__':
-    model = ColorizationModel().to(device)
+    model = ColorizationModel()
 
     scope(model, (4, im_size, im_size))
