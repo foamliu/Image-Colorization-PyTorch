@@ -5,7 +5,7 @@ from torch.utils.tensorboard import SummaryWriter
 
 from config import device, num_classes, grad_clip, print_freq, num_workers
 from data_gen import MICDataset
-from models.deeplab import DeepLab
+from models import ColorizationModel
 from utils import parse_args, save_checkpoint, AverageMeter, get_logger, accuracy, clip_gradient, get_learning_rate
 
 
@@ -20,7 +20,7 @@ def train_net(args):
 
     # Initialize / load checkpoint
     if checkpoint is None:
-        model = DeepLab(backbone='mobilenet', output_stride=16, num_classes=num_classes)
+        model = ColorizationModel()
         model = nn.DataParallel(model)
 
         optimizer = torch.optim.Adam(model.parameters(), lr=args.lr, betas=(0.9, 0.99), weight_decay=args.weight_decay)

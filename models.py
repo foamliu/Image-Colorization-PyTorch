@@ -88,9 +88,9 @@ class segnetUp1(nn.Module):
         return outputs
 
 
-class DIMModel(nn.Module):
+class ColorizationModel(nn.Module):
     def __init__(self, n_classes=1, in_channels=4, is_unpooling=True, pretrain=True):
-        super(DIMModel, self).__init__()
+        super(ColorizationModel, self).__init__()
 
         self.in_channels = in_channels
         self.is_unpooling = is_unpooling
@@ -170,6 +170,6 @@ class DIMModel(nn.Module):
 
 
 if __name__ == '__main__':
-    model = DIMModel().to(device)
+    model = ColorizationModel().to(device)
 
     scope(model, (4, im_size, im_size))
