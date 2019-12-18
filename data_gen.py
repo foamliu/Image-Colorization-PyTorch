@@ -78,7 +78,7 @@ class ColorizationDataset(Dataset):
 
         # print('x.shape: ' + str(x.shape))
         # print('x: ' + str(x))
-        # print('y.shape: ' + str(y.shape))
+        print('y.shape: ' + str(y.shape))
         # print('y: ' + str(y))
         return x, y
 
