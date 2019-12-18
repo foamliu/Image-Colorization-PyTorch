@@ -12,7 +12,7 @@ This is a lightweight PyTorch implementation of paper [Colorful Image Colorizati
 
 ## Dataset
 
-![image](https://github.com/foamliu/Colorful-Image-Colorization/raw/master/images/imagenet.png)
+![image](https://github.com/foamliu/Image-Colorization-PyTorch/raw/master/images/imagenet.png)
 
 Follow the [instruction](https://github.com/foamliu/ImageNet-Downloader) to download ImageNet dataset.
 
@@ -37,7 +37,7 @@ $ tensorboard --logdir path_to_current_dir/logs
 ```
 
 ### Demo
-Download [pre-trained model](https://github.com/foamliu/Colorful-Image-Colorization/releases/download/v1.0/model.06-2.5489.hdf5) into "models" folder then run:
+Download [pre-trained model](https://github.com/foamliu/Image-Colorization-PyTorch/releases/download/v1.0/model.06-2.5489.hdf5) into "models" folder then run:
 
 ```bash
 $ python demo.py
@@ -45,13 +45,13 @@ $ python demo.py
 
 Input | Output | GT | 
 |---|---|---|
-|![image](https://github.com/foamliu/Colorful-Image-Colorization/raw/master/images/0_image.png) | ![image](https://github.com/foamliu/Colorful-Image-Colorization/raw/master/images/0_out.png)| ![image](https://github.com/foamliu/Colorful-Image-Colorization/raw/master/images/0_gt.png)|
-|![image](https://github.com/foamliu/Colorful-Image-Colorization/raw/master/images/1_image.png) | ![image](https://github.com/foamliu/Colorful-Image-Colorization/raw/master/images/1_out.png)| ![image](https://github.com/foamliu/Colorful-Image-Colorization/raw/master/images/1_gt.png)|
-|![image](https://github.com/foamliu/Colorful-Image-Colorization/raw/master/images/2_image.png) | ![image](https://github.com/foamliu/Colorful-Image-Colorization/raw/master/images/2_out.png)| ![image](https://github.com/foamliu/Colorful-Image-Colorization/raw/master/images/2_gt.png)|
-|![image](https://github.com/foamliu/Colorful-Image-Colorization/raw/master/images/3_image.png) | ![image](https://github.com/foamliu/Colorful-Image-Colorization/raw/master/images/3_out.png)| ![image](https://github.com/foamliu/Colorful-Image-Colorization/raw/master/images/3_gt.png)|
-|![image](https://github.com/foamliu/Colorful-Image-Colorization/raw/master/images/4_image.png) | ![image](https://github.com/foamliu/Colorful-Image-Colorization/raw/master/images/4_out.png)| ![image](https://github.com/foamliu/Colorful-Image-Colorization/raw/master/images/4_gt.png)|
-|![image](https://github.com/foamliu/Colorful-Image-Colorization/raw/master/images/5_image.png) | ![image](https://github.com/foamliu/Colorful-Image-Colorization/raw/master/images/5_out.png)| ![image](https://github.com/foamliu/Colorful-Image-Colorization/raw/master/images/5_gt.png)|
-|![image](https://github.com/foamliu/Colorful-Image-Colorization/raw/master/images/6_image.png) | ![image](https://github.com/foamliu/Colorful-Image-Colorization/raw/master/images/6_out.png)| ![image](https://github.com/foamliu/Colorful-Image-Colorization/raw/master/images/6_gt.png)|
-|![image](https://github.com/foamliu/Colorful-Image-Colorization/raw/master/images/7_image.png) | ![image](https://github.com/foamliu/Colorful-Image-Colorization/raw/master/images/7_out.png)| ![image](https://github.com/foamliu/Colorful-Image-Colorization/raw/master/images/7_gt.png)|
-|![image](https://github.com/foamliu/Colorful-Image-Colorization/raw/master/images/8_image.png) | ![image](https://github.com/foamliu/Colorful-Image-Colorization/raw/master/images/8_out.png)| ![image](https://github.com/foamliu/Colorful-Image-Colorization/raw/master/images/8_gt.png)|
-|![image](https://github.com/foamliu/Colorful-Image-Colorization/raw/master/images/9_image.png) | ![image](https://github.com/foamliu/Colorful-Image-Colorization/raw/master/images/9_out.png)| ![image](https://github.com/foamliu/Colorful-Image-Colorization/raw/master/images/9_gt.png)|
+|![image](https://github.com/foamliu/Image-Colorization-PyTorch/raw/master/images/0_image.png) | ![image](https://github.com/foamliu/Image-Colorization-PyTorch/raw/master/images/0_out.png)| ![image](https://github.com/foamliu/Image-Colorization-PyTorch/raw/master/images/0_gt.png)|
+|![image](https://github.com/foamliu/Image-Colorization-PyTorch/raw/master/images/1_image.png) | ![image](https://github.com/foamliu/Image-Colorization-PyTorch/raw/master/images/1_out.png)| ![image](https://github.com/foamliu/Image-Colorization-PyTorch/raw/master/images/1_gt.png)|
+|![image](https://github.com/foamliu/Image-Colorization-PyTorch/raw/master/images/2_image.png) | ![image](https://github.com/foamliu/Image-Colorization-PyTorch/raw/master/images/2_out.png)| ![image](https://github.com/foamliu/Image-Colorization-PyTorch/raw/master/images/2_gt.png)|
+|![image](https://github.com/foamliu/Image-Colorization-PyTorch/raw/master/images/3_image.png) | ![image](https://github.com/foamliu/Image-Colorization-PyTorch/raw/master/images/3_out.png)| ![image](https://github.com/foamliu/Image-Colorization-PyTorch/raw/master/images/3_gt.png)|
+|![image](https://github.com/foamliu/Image-Colorization-PyTorch/raw/master/images/4_image.png) | ![image](https://github.com/foamliu/Image-Colorization-PyTorch/raw/master/images/4_out.png)| ![image](https://github.com/foamliu/Image-Colorization-PyTorch/raw/master/images/4_gt.png)|
+|![image](https://github.com/foamliu/Image-Colorization-PyTorch/raw/master/images/5_image.png) | ![image](https://github.com/foamliu/Image-Colorization-PyTorch/raw/master/images/5_out.png)| ![image](https://github.com/foamliu/Image-Colorization-PyTorch/raw/master/images/5_gt.png)|
+|![image](https://github.com/foamliu/Image-Colorization-PyTorch/raw/master/images/6_image.png) | ![image](https://github.com/foamliu/Image-Colorization-PyTorch/raw/master/images/6_out.png)| ![image](https://github.com/foamliu/Image-Colorization-PyTorch/raw/master/images/6_gt.png)|
+|![image](https://github.com/foamliu/Image-Colorization-PyTorch/raw/master/images/7_image.png) | ![image](https://github.com/foamliu/Image-Colorization-PyTorch/raw/master/images/7_out.png)| ![image](https://github.com/foamliu/Image-Colorization-PyTorch/raw/master/images/7_gt.png)|
+|![image](https://github.com/foamliu/Image-Colorization-PyTorch/raw/master/images/8_image.png) | ![image](https://github.com/foamliu/Image-Colorization-PyTorch/raw/master/images/8_out.png)| ![image](https://github.com/foamliu/Image-Colorization-PyTorch/raw/master/images/8_gt.png)|
+|![image](https://github.com/foamliu/Image-Colorization-PyTorch/raw/master/images/9_image.png) | ![image](https://github.com/foamliu/Image-Colorization-PyTorch/raw/master/images/9_out.png)| ![image](https://github.com/foamliu/Image-Colorization-PyTorch/raw/master/images/9_gt.png)|
