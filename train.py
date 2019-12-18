@@ -39,6 +39,8 @@ def train_net(args):
     # Move to GPU, if available
     model = model.to(device)
 
+    criterion = nn.CrossEntropyLoss()
+
     # Custom dataloaders
     train_dataset = ColorizationDataset('train')
     train_loader = torch.utils.data.DataLoader(train_dataset, batch_size=args.batch_size, shuffle=True,
@@ -52,6 +54,7 @@ def train_net(args):
         # One epoch's training
         train_loss, train_acc = train(train_loader=train_loader,
                                       model=model,
+                                      criterion=criterion,
                                       optimizer=optimizer,
                                       epoch=epoch,
                                       logger=logger)
@@ -65,6 +68,7 @@ def train_net(args):
         # One epoch's validation
         valid_loss, valid_acc = valid(valid_loader=valid_loader,
                                       model=model,
+                                      criterion=criterion,
                                       logger=logger)
 
         writer.add_scalar('model/valid_loss', valid_loss, epoch)
@@ -83,7 +87,7 @@ def train_net(args):
         save_checkpoint(epoch, epochs_since_improvement, model, optimizer, best_loss, is_best)
 
 
-def train(train_loader, model, optimizer, epoch, logger):
+def train(train_loader, model, criterion, optimizer, epoch, logger):
     model.train()  # train mode (dropout and batchnorm is used)
 
     losses = AverageMeter()
@@ -100,10 +104,11 @@ def train(train_loader, model, optimizer, epoch, logger):
 
         # Calculate loss
         # loss = criterion(out, target)
-        loss = -y * (1 - y_hat).pow(2) * torch.log(y_hat)  # [N, 313, 64, 64]
+        # loss = -y * (1 - y_hat).pow(2) * torch.log(y_hat)  # [N, 313, 64, 64]
         # loss = -y * torch.log(y_hat)  # [N, 313, 64, 64]
-        loss = torch.sum(loss, dim=1)  # [N, 64, 64]
-        loss = loss.mean()
+        # loss = torch.sum(loss, dim=1)  # [N, 64, 64]
+        # loss = loss.mean()
+        loss = criterion(y_hat, y)
         acc = accuracy(y_hat, y)
 
         # Back prop.
@@ -131,7 +136,7 @@ def train(train_loader, model, optimizer, epoch, logger):
     return losses.avg, accs.avg
 
 
-def valid(valid_loader, model, logger):
+def valid(valid_loader, model, criterion, logger):
     model.eval()  # eval mode (dropout and batchnorm is NOT used)
 
     losses = AverageMeter()
@@ -149,10 +154,11 @@ def valid(valid_loader, model, logger):
 
         # Calculate loss
         # loss = criterion(out, target)
-        loss = -y * (1 - y_hat).pow(2) * torch.log(y_hat)  # [N, 313, 64, 64]
+        # loss = -y * (1 - y_hat).pow(2) * torch.log(y_hat)  # [N, 313, 64, 64]
         # loss = -y * torch.log(y_hat)  # [N, 313, 64, 64]
-        loss = torch.sum(loss, dim=1)  # [N, 64, 64]
-        loss = loss.mean()
+        # loss = torch.sum(loss, dim=1)  # [N, 64, 64]
+        # loss = loss.mean()
+        loss = criterion(y_hat, y)
         acc = accuracy(y_hat, y)
 
         # Keep track of metrics
