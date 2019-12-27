@@ -39,7 +39,7 @@ def train_net(args):
     # Move to GPU, if available
     model = model.to(device)
 
-    criterion = nn.CrossEntropyLoss()
+    criterion = nn.NLLLoss()
 
     # Custom dataloaders
     train_dataset = ColorizationDataset('train')
